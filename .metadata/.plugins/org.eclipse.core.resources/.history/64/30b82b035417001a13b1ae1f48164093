@@ -1,0 +1,5 @@
+package RMIStudent;
+
+public class ServerRMI {
+
+}

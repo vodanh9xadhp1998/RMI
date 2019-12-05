@@ -1,0 +1,33 @@
+package RMIStudent;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.io.*;
+import java.util.ArrayList;
+@SuppressWarnings("serial")
+public class StudentRMI_IPML extends UnicastRemoteObject implements RmiInterface {
+	@SuppressWarnings("unused")
+	private String name;
+	public StudentRMI_IPML(String s) throws RemoteException {
+		super();
+		name = s;
+	}
+	@Override
+	public byte[] ReceiveStudent(ArrayList<Student> student) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void SendStudent(ArrayList<Student> student) throws RemoteException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos;
+        try 
+        {
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(student);
+            System.out.println("Send Object success");
+        } catch (IOException e) 
+        {
+        	e.printStackTrace();
+        }
+	}
+}

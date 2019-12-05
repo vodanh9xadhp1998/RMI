@@ -1,0 +1,25 @@
+package RMIStudent;
+import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+public class RmiImplementation extends UnicastRemoteObject implements RmiInterface {
+
+	protected RmiImplementation() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public ArrayList<Student> SendObject(ArrayList<Student> students) throws RemoteException {
+		
+		ObjectOutputStream oos= new ObjectOutputStream(students)
+		return null;
+	}
+
+	@Override
+	public ArrayList<Student> ReceiveObject(ArrayList<Student> students) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

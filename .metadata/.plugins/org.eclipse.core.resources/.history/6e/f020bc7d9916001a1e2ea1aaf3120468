@@ -1,0 +1,5 @@
+package RMIStudent;
+
+public class Client_Rmi {
+	
+}

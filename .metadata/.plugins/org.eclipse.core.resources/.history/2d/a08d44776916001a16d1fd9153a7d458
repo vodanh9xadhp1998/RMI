@@ -1,0 +1,9 @@
+package RMIStudent;
+import java.rmi.Remote;
+import java.util.ArrayList;
+import java.rmi.RemoteException;
+public interface RmiInterface extends Remote {
+	public void SaveFileStudent(ArrayList<Student> student, String FileName) throws RemoteException;
+	public ArrayList<Student> LoadFileStudent(String FileName)throws RemoteException;
+	}
+

@@ -1,0 +1,15 @@
+package RMIStudent;
+import java.net.InetAddress;
+import java.rmi.Naming;
+import java.rmi.Remote;
+
+public class Server_Rmi 
+{
+public static void main(String[] args) throws Exception
+    {
+        RmiInterface fi=new StudentRMI_IPML("SVServer");
+        InetAddress dc=InetAddress.getLocalHost();
+        Naming.rebind("rmi://"+dc.getHostAddress()+"/SVServer", (Remote) fi);
+        System.out.println("Server san sang phuc vu...");
+    }
+}

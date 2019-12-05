@@ -1,0 +1,19 @@
+package RMIStudent;
+
+import java.net.InetAddress;
+import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class Server_Rmi {
+	static int portnumber = 9000;
+
+	public static void main(String[] args) throws Exception {
+		Registry reg = LocateRegistry.createRegistry(portnumber);
+		StudentRMI_IPML imp = new StudentRMI_IPML("servername");
+		reg.bind("remoteObject", imp);
+		System.out.println("Server is ready.");
+		System.out.println(portnumber);
+	}
+}

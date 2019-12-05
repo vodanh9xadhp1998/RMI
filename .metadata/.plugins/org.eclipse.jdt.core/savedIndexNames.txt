@@ -1,0 +1,10 @@
+INDEX VERSION 1.131+D:\BaiVNJava\.metadata\.plugins\org.eclipse.jdt.core
+2693130208.index
+652491173.index
+2950324271.index
+194667714.index
+4238721439.index
+1248545562.index
+2565038376.index
+905084973.index
+1732888800.index

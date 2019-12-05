@@ -1,0 +1,9 @@
+package RMIStudent;
+import java.rmi.Remote;
+import java.util.ArrayList;
+import java.rmi.RemoteException;
+public interface RmiInterface extends Remote {
+	public ArrayList<Student> SendObject(ArrayList<Student> students) throws RemoteException;
+	public ArrayList<Student> ReceiveObject(ArrayList<Student> students) throws RemoteException;
+}
+

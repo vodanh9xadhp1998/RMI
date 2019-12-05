@@ -1,0 +1,95 @@
+package RMIStudent;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+class Sinhvien implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String ten;
+	private int id;
+	private double dtb;
+
+	public Sinhvien(String t, int i, double d) {
+		ten = t;
+		id = i;
+		dtb = d;
+	}
+
+	@SuppressWarnings("resource")
+	public void nhapsv() {
+		Scanner in = new Scanner(System.in);
+		System.out.print("Nhap ten : ");
+		ten = in.nextLine();
+		System.out.print("Nhap id: ");
+		id = in.nextInt();
+		System.out.print("Nhap dtb: ");
+		dtb = in.nextDouble();
+	}
+
+	public double dtb() {
+		return dtb;
+	}
+
+	public void insv() {
+		System.out.println("Id: " + id);
+		System.out.println("Ten : " + ten);
+		System.out.println("Diem trung binh: " + dtb());
+	}
+}
+
+public class StudentRMI_IPML extends UnicastRemoteObject implements RmiInterface {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
+	private String name;
+
+	public StudentRMI_IPML(String s) throws RemoteException {
+		super();
+		name = s;
+	}
+
+	public byte[] DSSV() throws RemoteException {
+		ArrayList<Sinhvien> dssv = new ArrayList<Sinhvien>();
+		dssv.add(new Sinhvien("Hoan", 11, 9));
+		dssv.add(new Sinhvien("Linh", 12, 8));
+		dssv.add(new Sinhvien("Hai", 13, 7.8));
+		dssv.add(new Sinhvien("Kien", 14, 9.8));
+		dssv.add(new Sinhvien("Nam", 15, 8.7));
+		Collections.sort(dssv, new Comparator<Sinhvien>()
+		{
+			@Override
+            public int compare(Sinhvien o1, Sinhvien o2) {
+                if(o1.dtb() - o2.dtb() < 0)
+                	return 1;
+                else  if(o1.dtb() - o2.dtb() == 0)
+                	return 0;
+                else
+                	return -1;
+            }
+		});
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream(baos);
+			oos.writeObject(dssv);
+		} catch (IOException e) {
+			System.out.print("Error "+e);
+		}
+		byte[] data = baos.toByteArray();
+		return data;
+	}
+
+}

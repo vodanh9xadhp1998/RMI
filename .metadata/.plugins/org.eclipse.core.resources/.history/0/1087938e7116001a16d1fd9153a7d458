@@ -1,0 +1,9 @@
+package RMIStudent;
+import java.rmi.*;
+public class RMIServer  {
+	static int port = 9000;
+	public static void main(String[] args)
+	{
+		
+	}
+}

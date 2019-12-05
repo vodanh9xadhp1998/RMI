@@ -1,0 +1,22 @@
+package RMIfile;
+import java.io.Serializable;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class RMIServer implements Serializable{
+	
+	static int portnumber = 9999;
+	public static void main(String[] args) {
+		
+		try{
+			Registry reg = LocateRegistry.createRegistry(portnumber);   
+			RmiImplementation imp =  new RmiImplementation("D://SeverFile");
+			reg.bind("remoteObject", imp);
+			System.out.println("Server is ready.");
+			System.out.println(portnumber);
+		}
+		catch(Exception e){
+			System.out.println("Server failed: " + e);
+		}
+	}
+}

@@ -1,0 +1,22 @@
+package RMIStudent;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.io.*;
+import java.util.ArrayList;
+public class RMIServer  {
+	static int port = 9000;
+	public static void main(String[] args)
+	{
+		try {
+			Registry reg = LocateRegistry.createRegistry(port);
+			ActionFile AF = new ActionFile();
+			
+			System.out.println("Server is ready...");
+			System.out.println(port);
+			
+		}catch(Exception e)
+		{
+			System.out.println("Server failed: "+e);
+		}
+	}
+}

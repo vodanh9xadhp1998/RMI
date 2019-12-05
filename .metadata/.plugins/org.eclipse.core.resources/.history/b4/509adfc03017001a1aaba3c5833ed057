@@ -1,0 +1,74 @@
+package RMIStudent;
+
+import java.io.Serializable;
+import java.util.Scanner;
+
+public class Student implements Serializable{
+	private int ID;
+	private String Name;
+	private int Age;
+	private float mark;
+	public int getID() {
+		return ID;
+	}
+	public Student()
+	{
+		this.setAge(0);
+		this.setID(0);
+		this.setMark(0);
+		this.setName("");
+	}
+	public Student(int IDStudent, int age, String name,float agve)
+	{
+		this.setID(IDStudent);
+		this.setAge(age);
+		this.setName(name);
+		this.setMark(agve);
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getAge() {
+		return Age;
+	}
+
+	public void setAge(int age) {
+		Age = age;
+	}
+
+	public float getMark() {
+		return mark;
+	}
+
+	public void setMark(float mark) {
+		this.mark = mark;
+	}
+	Scanner sc = new Scanner(System.in);
+	public void Input()
+	{
+		System.out.print("ID Student: ");
+		this.ID = sc.nextInt();
+		System.out.print("Name Student: ");
+		this.Name = sc.next();
+		System.out.print("Age: ");
+		this.Age = sc.nextInt();
+		System.out.print("Mark: ");
+		this.mark = sc.nextFloat();
+	}
+	public void Output()
+	{
+		System.out.print("ID: "+this.ID+"\t");
+		System.out.print("ID: "+this.Name+"\t");
+		System.out.print("ID: "+this.Age+"\t");
+		System.out.print("MarkAvge: "+this.mark+"\n");
+	}
+}

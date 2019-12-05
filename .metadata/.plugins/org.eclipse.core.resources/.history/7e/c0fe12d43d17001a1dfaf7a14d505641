@@ -1,0 +1,71 @@
+package RMIStudent;
+
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.*;
+
+@SuppressWarnings("serial")
+class Sinhvien implements Serializable {
+	private String ten;
+	private int id;
+	private double dtb;
+
+	public Sinhvien(String t, int i, double d) {
+		ten = t;
+		id = i;
+		dtb = d;
+	}
+
+	public void nhapsv() {
+		Scanner in = new Scanner(System.in);
+		System.out.print("Nhap ten : ");
+		ten = in.nextLine();
+		System.out.print("Nhap id: ");
+		id = in.nextInt();
+		System.out.print("Nhap dtb: ");
+		dtb = in.nextDouble();
+	}
+
+	public double dtb() {
+		return dtb;
+	}
+
+	public void insv() {
+		System.out.println("Id: " + id);
+		System.out.println("Ten : " + ten);
+		System.out.println("Diem trung binh: " + dtb());
+	}
+}
+
+public class StudentRMI_IPML extends UnicastRemoteObject implements RmiInterface {
+	private String name;
+
+	protected StudentRMI_IPML(String s) throws RemoteException {
+		super();
+		name = s;
+	}
+
+	@Override
+	public byte[] DSSV() throws RemoteException {
+		ArrayList<Sinhvien> dssv = new ArrayList<Sinhvien>();
+		dssv.add(new Sinhvien("Hoa", 11, 9));
+		dssv.add(new Sinhvien("Thu", 12, 8));
+		dssv.add(new Sinhvien("Anh", 13, 7.8));
+		dssv.add(new Sinhvien("An", 14, 9.8));
+		dssv.add(new Sinhvien("Nam", 15, 8.7));
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream(baos);
+			oos.writeObject(dssv);
+		} catch (IOException ex) {
+			Logger.getLogger(StudentRMI_IPML.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		byte[] data = baos.toByteArray();
+		return data;
+	}
+
+}

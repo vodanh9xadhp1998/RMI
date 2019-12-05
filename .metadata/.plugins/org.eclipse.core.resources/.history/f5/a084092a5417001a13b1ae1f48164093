@@ -1,0 +1,15 @@
+package RMIStudent;
+import java.sql.*; 
+import java.util.*;  
+
+// Implementing the remote interface 
+public class IMPL implements Interface {  
+   
+   // Implementing the interface method 
+   public List<Student> getStudents() throws Exception {  
+      List<Student> list = new ArrayList<Student>();   
+      ActionFile AF = new ActionFile();
+      list = AF.LoadFileStudent("DataSudent.dat");
+      return list;     
+   }  
+}

@@ -1,0 +1,39 @@
+package RMIStudent;
+import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Client_Rmi {
+	 public static void InputData(ArrayList<Student> students) {
+			int n;
+			Scanner sc = new Scanner(System.in);
+			do {
+				System.out.print("Ban co muon nhap them khong sinh vien khong..?\n(1)Co\n(0)Khong\nMoi ban chon: ");
+				n = sc.nextInt();
+				if (n == 1) 
+				{
+					Student student = new Student();
+					student.Input();
+					students.add(student);
+				}
+			} while (n != 0);
+		}
+	static int portnumber = 9000;
+	static String hostname = "localhost";
+	public static void main(String[] args) throws NotBoundException
+	{
+		ArrayList<Student> students =  new ArrayList<Student>();
+		try {
+			System.out.println("Connect to server: "+portnumber);
+			Registry myreg = LocateRegistry.getRegistry(hostname,portnumber);
+			RmiInterface inter = (RmiInterface)myreg.lookup("Student_SV");
+			InputData(students);
+			inter.SendStudent(students);
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

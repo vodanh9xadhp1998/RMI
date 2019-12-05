@@ -1,0 +1,59 @@
+package RMIStudent;
+
+import java.util.Scanner;
+
+public class Student {
+	private int ID;
+	private String Name;
+	private int Age;
+	private float mark;
+	public int getID() {
+		return ID;
+	}
+	public Student()
+	{
+		this.setAge(0);
+		this.setID(0);
+		this.setMark(0);
+		this.setName("");
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getAge() {
+		return Age;
+	}
+
+	public void setAge(int age) {
+		Age = age;
+	}
+
+	public float getMark() {
+		return mark;
+	}
+
+	public void setMark(float mark) {
+		this.mark = mark;
+	}
+	Scanner sc = new Scanner(System.in);
+	public void Input()
+	{
+		System.out.print("ID Student: ");
+		this.ID = sc.nextInt();
+		System.out.print("Name Student: ");
+		this.Name = sc.next();
+		System.out.print("Age: ");
+		this.Age = sc.nextInt();
+		System.out.print("Mark: ");
+		this.mark = sc.nextFloat();
+	}
+}

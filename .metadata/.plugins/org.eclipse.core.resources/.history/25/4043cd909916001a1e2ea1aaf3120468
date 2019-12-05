@@ -1,0 +1,19 @@
+package RMIStudent;
+import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+public class Client_Rmi {
+	static int portnumber = 9000;
+	static String hostname = "localhost";
+	public static void main(String[] args)
+	{
+		try {
+			System.out.println("Connect to server: "+portnumber);
+			Registry myreg = LocateRegistry.getRegistry(hostname,portnumber);
+			RmiInterface inter = (RmiInterface)myreg.lookup("Student SV");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

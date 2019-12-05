@@ -1,0 +1,32 @@
+package RMIStudent;
+
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.ArrayList;
+
+@SuppressWarnings("serial")
+public class Client_Rmi implements Serializable {
+	static String hostname = "localhost";
+
+	static int portnumber = 9999;
+
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("Connect to server: " + portnumber);
+
+		Registry myreg = LocateRegistry.getRegistry(hostname, portnumber);
+		RmiInterface inter = (RmiInterface) myreg.lookup("remoteObject");
+		byte[] filedata = inter.DSSV();
+		ByteArrayInputStream bais = new ByteArrayInputStream(filedata);
+		ObjectInputStream ois = new ObjectInputStream(bais);
+		ArrayList<Sinhvien> kq = new ArrayList<Sinhvien>();
+		kq = (ArrayList<Sinhvien>) ois.readObject();
+		System.out.println("Danh sach 10 sinh vien diem cao nhat");
+		for (Sinhvien i : kq)
+			i.insv();
+	}
+}

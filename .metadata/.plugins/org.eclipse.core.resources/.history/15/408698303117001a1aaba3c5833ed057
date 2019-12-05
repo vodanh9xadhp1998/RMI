@@ -1,0 +1,23 @@
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
+import java.net.InetAddress;
+import java.rmi.Naming;
+import java.util.ArrayList;
+
+public class Client_Rmi {
+    public static void main(String[] args) throws Exception
+    {
+    InetAddress dc=InetAddress.getLocalHost();
+    String name="rmi://"+dc.getHostAddress()+"/SVServer";
+
+    RmiInterface fi=(RmiInterface)Naming.lookup(name);
+    byte[] filedata=fi.DSSV();
+    ByteArrayInputStream bais = new ByteArrayInputStream(filedata);
+    ObjectInputStream ois = new ObjectInputStream(bais);
+    ArrayList<Sinhvien> kq = new ArrayList<Sinhvien>();
+    kq = (ArrayList<Sinhvien>) ois.readObject();
+    System.out.println("Danh sach 3 sinh vien diem cao nhat");
+    for(Sinhvien i : kq)
+      	i.insv();
+    }
+}

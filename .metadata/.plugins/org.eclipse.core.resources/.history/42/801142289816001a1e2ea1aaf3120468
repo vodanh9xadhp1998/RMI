@@ -1,0 +1,14 @@
+package RMIStudent;
+
+import java.net.InetAddress;
+import java.rmi.*;
+
+public class Server_Rmi {
+	public static void main(String[] args) throws Exception
+	{
+		RmiInterface SV = new StudentRMI_IPML("Server Student");
+		InetAddress ad = InetAddress.getLocalHost();
+		Naming.rebind("RMI://"+ad.getHostAddress()+" readdy",SV);
+		System.out.println("Server ready for client requests");	
+	}
+}

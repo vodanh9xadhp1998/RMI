@@ -1,0 +1,25 @@
+package RMIStudent;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class StudentRMI_IPML extends UnicastRemoteObject implements RmiInterface {
+	protected StudentRMI_IPML() throws RemoteException {
+		super();
+	}
+
+	@Override
+	public byte[] SendStudent(ArrayList<Student> student) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void Receive(ArrayList<Student> student) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}
